@@ -1,0 +1,48 @@
+# .github/workflows/main_mlops_pipeline.yml
+name: MLOps Anomaly Detection Pipeline
+
+on:
+  workflow_dispatch: # Allows manual triggering from GitHub Actions UI
+  # push: # Uncomment to trigger on code pushes (e.g., to 'main' branch)
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'src/models/**' # Trigger if training code changes
+  # schedule: # Uncomment to trigger on a schedule (e.g., daily retraining)
+  #   - cron: '0 0 * * *' # Every day at midnight UTC
+
+env:
+  AZURE_RESOURCE_GROUP: mlopsanomaly-rg # Replace with your actual RG name
+  AZURE_ML_WORKSPACE_NAME: mlopsanomaly-ml-workspace # Replace with your actual AML Workspace name
+  # These will be passed from GitHub Secrets
+  AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+jobs:
+  retrain_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9' # Match your training script's Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt # Make sure your root requirements.txt has all AML/sklearn deps
+          pip install azureml-sdk azureml-pipeline # Ensure these are installed
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","allowNoSubscriptionsLogin":false}'
+
+      - name: Run Azure ML Training Job
+        run: |
+          # This example runs a training job defined in train.py
+          # You can adjust this to run an Azure ML Pipeline or submit a command job
+          echo "Submitting Azure ML training job..."
+          python -c "

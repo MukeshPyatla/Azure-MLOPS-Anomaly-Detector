@@ -1,0 +1,15 @@
+// src/inference/AnomalyDetectorFunction/AnomalyHubTrigger/function.json
+{
+    "scriptFile": "__init__.py",
+    "bindings": [
+      {
+        "type": "eventHubTrigger",
+        "name": "events",
+        "direction": "in",
+        "eventHubName": "mlopsanomaly-transactions-eh", // REPLACE with your actual Event Hub name!
+        "connection": "EventHubConnection", // Name of the app setting that holds the connection string
+        "consumerGroup": "$Default", // Or a custom consumer group for your function
+        "cardinality": "many" // To process multiple events in one batch
+      }
+    ]
+  }

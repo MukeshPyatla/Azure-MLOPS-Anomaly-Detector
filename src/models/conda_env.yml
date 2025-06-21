@@ -1,0 +1,13 @@
+# src/models/conda_env.yml
+name: anomaly-detection-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.10 # Must match the Python version you trained with or compatible
+  - pip
+  - pip:
+    - azureml-defaults # Includes azureml-core, pandas, numpy, etc.
+    - scikit-learn==1.0.2 # IMPORTANT: Pin to the exact version used for training!
+    - pandas==1.3.5     # Pin to version used for training if possible
+    - joblib==1.1.0     # Pin to version used for training
