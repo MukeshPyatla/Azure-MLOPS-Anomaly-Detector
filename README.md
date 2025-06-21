@@ -50,7 +50,7 @@ Modern enterprises contend with vast streams of data where identifying unusual p
 
 The architecture diagram below illustrates the flow of data and machine learning operations within the Azure cloud environment.
 
-![Azure MLOps Anomaly Detection Architecture Diagram](https://raw.githubusercontent.com/YOUR_USERNAME/mlops-anomaly-detector-azure/main/docs/architecture_diagram.png)
+![Azure MLOps Anomaly Detection Architecture Diagram](docs/Azure MLOps Anomaly Detection Architecture Diagram.png)
 
 *(Consider adding a brief textual overview here similar to the one we outlined in our discussions, explaining the purpose of each major phase in the diagram.)*
 
