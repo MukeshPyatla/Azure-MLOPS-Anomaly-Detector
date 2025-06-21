@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+.Python/
+venv/
+.env
+*.log
+*.swp # Vim swap files
+*.swo # Vim swap files
+
+# IDEs (VS Code, IntelliJ/PyCharm, etc.)
+.vscode/
+.idea/
+
+# Terraform
+.terraform/           # Terraform state and plugin directory
+*.tfstate             # Terraform state file (VERY important to ignore!)
+*.tfstate.backup      # Backup of the state file
+.terraform.lock.hcl   # Dependency lock file for providers
+
+# Azure/Cloud specific (CRITICAL: NEVER commit actual credentials)
+.azure/             # Azure CLI configuration/cache
+.azure/*credentials* # NEVER commit credentials!
+*.key               # Private key files
+*.pfx
+*.pubkey            # Public key files generated during deployment
+
+# Azure Functions
+.funcignore         # Azure Functions specific ignore
+.vscode_settings.json # VS Code settings for Functions
+local.settings.json # Local app settings, can contain secrets
+
+# Data
+data/*.csv            # Ignore large CSV files in data/
+data/*.json
+data/*.gz
+data/*.zip
+/data/raw/            # Ignore contents of raw data folder if it contains actual large data
+/data/processed/      # Ignore contents of processed data folder
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
