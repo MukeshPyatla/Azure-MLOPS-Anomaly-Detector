@@ -1,3 +1,12 @@
 azure-eventhub
 azure-storage-blob
 azure-functions # For local Functions development
+azureml-core
+azureml-sdk # Might be redundant with azureml-core but good to include
+azureml-dataset-runtime[pandas,fuse] # For reading data
+pandas
+scikit-learn
+joblib
+azure-functions
+requests
+pandas
