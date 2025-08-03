@@ -153,12 +153,14 @@ def create_visualizations(data, model, features):
     fig_hist.update_layout(height=400)
     
     # 3. Hour distribution
+    hour_counts = data['transaction_hour'].value_counts().reset_index()
+    hour_counts.columns = ['hour', 'count']  # Rename columns for clarity
     fig_hour = px.bar(
-        data['transaction_hour'].value_counts().reset_index(),
-        x='index',
-        y='transaction_hour',
+        hour_counts,
+        x='hour',
+        y='count',
         title='Transaction Volume by Hour',
-        labels={'index': 'Hour of Day', 'transaction_hour': 'Number of Transactions'}
+        labels={'hour': 'Hour of Day', 'count': 'Number of Transactions'}
     )
     fig_hour.update_layout(height=400)
     
