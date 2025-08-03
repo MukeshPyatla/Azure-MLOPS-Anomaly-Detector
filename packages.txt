@@ -1,2 +1,0 @@
-# System dependencies for the Streamlit app
-# No specific system packages needed for this Python-based application 
