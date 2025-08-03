@@ -2,6 +2,7 @@
 
 ![Project Status](https://img.shields.io/badge/Status-In%20Progress-blue)
 ![Cloud Provider](https://img.shields.io/badge/Cloud-Azure-0078D4?logo=azure)
+![Streamlit App](https://img.shields.io/badge/Streamlit-App%20Ready-green)
 
 ---
 
@@ -12,7 +13,9 @@
 * [3. Architecture](#3-architecture)
 * [4. Key Technologies](#4-key-technologies)
 * [5. MLOps Principles & Features Demonstrated](#5-mlops-principles--features-demonstrated)
-* [6. Getting Started / Local Setup](#6-getting-started--local-setup)
+* [6. Getting Started](#6-getting-started)
+    * [🚀 Quick Start - Streamlit Cloud Deployment](#-quick-start---streamlit-cloud-deployment)
+    * [🔧 Local Setup](#-local-setup)
     * [Prerequisites](#prerequisites)
     * [Azure Authentication](#azure-authentication)
     * [Terraform Deployment](#terraform-deployment)
@@ -87,7 +90,42 @@ This project showcases a holistic approach to MLOps, embodying several key princ
 * **Alerting:** Setting up notifications for critical issues related to data quality, model performance, or infrastructure health via Azure Monitor Action Groups.
 * **Reproducibility:** Version control for code, infrastructure, and explicit management of data/model versions (using DVC concepts).
 
-## 6. 🚀 Getting Started / Local Setup
+## 6. 🚀 Getting Started
+
+### 🚀 Quick Start - Streamlit Cloud Deployment
+
+**Want to try the anomaly detection system right now?** Deploy the interactive Streamlit app to Streamlit Cloud in minutes!
+
+#### Prerequisites
+- GitHub account
+- Streamlit Cloud account (free at [share.streamlit.io](https://share.streamlit.io))
+
+#### Quick Deployment Steps
+1. **Fork this repository** to your GitHub account
+2. **Go to Streamlit Cloud**: Visit [share.streamlit.io](https://share.streamlit.io)
+3. **Connect your GitHub account** and select this repository
+4. **Set the app path**: `streamlit_app.py`
+5. **Click Deploy!** 🚀
+
+Your app will be live at `https://your-app-name.streamlit.app` in just a few minutes!
+
+#### 🎯 What You Can Do
+- **Interactive Anomaly Detection**: Test real-time fraud detection
+- **Data Visualization**: Explore transaction patterns and anomalies
+- **Batch Processing**: Upload CSV files for bulk analysis
+- **Model Performance**: View accuracy metrics and confusion matrices
+
+#### 📁 Required Files for Streamlit
+- `streamlit_app.py` - Main application
+- `requirements.txt` - Python dependencies
+- `.streamlit/config.toml` - Streamlit configuration
+- `sample_transactions.csv` - Sample data for testing
+
+For detailed deployment instructions, see [STREAMLIT_DEPLOYMENT.md](STREAMLIT_DEPLOYMENT.md).
+
+---
+
+### 🔧 Local Setup
 
 Follow these steps to set up the project locally and deploy the infrastructure to your Azure subscription.
 

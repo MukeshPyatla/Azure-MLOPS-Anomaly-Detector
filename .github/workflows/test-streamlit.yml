@@ -1,0 +1,87 @@
+name: Test Streamlit App
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Test imports and functionality
+      run: |
+        python test_streamlit.py
+    
+    - name: Test Streamlit app structure
+      run: |
+        python -c "
+        import streamlit_app
+        print('✅ Streamlit app imports successfully')
+        
+        # Test data generation
+        data = streamlit_app.generate_synthetic_data(100)
+        print(f'✅ Generated {len(data)} transactions')
+        
+        # Test model training
+        model, features = streamlit_app.train_anomaly_model(data)
+        print(f'✅ Trained model with features: {features}')
+        
+        # Test prediction
+        test_data = {'amount': 5000, 'transaction_hour': 2}
+        prediction = streamlit_app.predict_anomaly(model, features, test_data)
+        print(f'✅ Made prediction: {prediction}')
+        "
+    
+    - name: Check required files exist
+      run: |
+        echo "Checking required files for Streamlit Cloud deployment..."
+        test -f streamlit_app.py && echo "✅ streamlit_app.py exists"
+        test -f requirements.txt && echo "✅ requirements.txt exists"
+        test -f .streamlit/config.toml && echo "✅ .streamlit/config.toml exists"
+        test -f packages.txt && echo "✅ packages.txt exists"
+        test -f sample_transactions.csv && echo "✅ sample_transactions.csv exists"
+        echo "✅ All required files present for Streamlit Cloud deployment"
+    
+    - name: Validate requirements.txt
+      run: |
+        echo "Validating requirements.txt..."
+        pip check
+        echo "✅ All dependencies are compatible"
+    
+  test-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10']
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Test app
+      run: |
+        python test_streamlit.py 

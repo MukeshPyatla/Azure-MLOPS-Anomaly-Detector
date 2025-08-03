@@ -1,12 +1,23 @@
+# Core Azure dependencies
 azure-eventhub
 azure-storage-blob
-azure-functions # For local Functions development
+azure-functions
 azureml-core
-azureml-sdk # Might be redundant with azureml-core but good to include
-azureml-dataset-runtime[pandas,fuse] # For reading data
+azureml-sdk
+azureml-dataset-runtime[pandas,fuse]
+
+# Data science and ML libraries
 pandas
+numpy
 scikit-learn
 joblib
-azure-functions
+
+# Streamlit and visualization
+streamlit>=1.28.0
+plotly>=5.15.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Additional utilities
 requests
-pandas
+python-dateutil
